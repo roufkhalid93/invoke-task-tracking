@@ -12,7 +12,7 @@ body {
   font-family: "Poppins";
 }
 header {
-  background: #fff;
+  background: #355E3B;
 }
 header .container {
   max-width: 1400px;
@@ -23,7 +23,7 @@ header .container {
   justify-content: space-between;
 }
 header a {
-  color: #333;
+  color: #E2DFD2;
   text-decoration: none;
 }
 .pages{
@@ -49,7 +49,7 @@ header a {
 .task-details h4 {
   margin: 0 0 10px 0;
   font-size: 1.2em;
-  color: var(--primary);
+  color: #40826D;
 }
 .task-details p {
   margin: 0;
@@ -80,8 +80,26 @@ input {
   border-radius: 4px;
   box-sizing: border-box;
 }
+textarea {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+select {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 form button {
-  background: var(--primary);
+  background: #355E3B;
   border: 0;
   color: #fff;
   padding: 10px;
@@ -99,4 +117,67 @@ div.error {
 }
 input.error {
   border: 1px solid var(--error);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Modal Content */
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  margin-top: 15px; /* Add some spacing above the buttons */
+}
+
+/* Buttons */
+.modal-edit,
+.modal-close {
+  width: 100px; /* Same width for both buttons */
+  padding: 10px;
+  margin: 10px 5px; /* Add space between buttons */
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  
+}
+
+.modal-edit {
+  background-color: #28a745; /* Green color for modal-edit */
+  color: white;
+}
+
+.modal-close {
+  background-color: #dc3545; /* Red color for modal-close */
+  color: white;
+}
+
+/* Add hover effect for buttons */
+.modal-edit:hover {
+  background-color: #218838; /* Darker green */
+}
+
+.modal-close:hover {
+  background-color: #c82333; /* Darker red */
 }

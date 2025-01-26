@@ -7,13 +7,14 @@ const TaskForm = () => {
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
+    const [status, setStatus] = useState("New")
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
     
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const task = {title, description}
+        const task = {title, description, status}
 
         const response = await fetch('/api/tasks', {
             method: 'POST',
@@ -31,6 +32,7 @@ const TaskForm = () => {
         if (response.ok){
             setTitle('')
             setDescription('')
+            setStatus("New")
             setError(null)
             setEmptyFields([])
             console.log('new task added', json)
@@ -51,11 +53,22 @@ const TaskForm = () => {
             />
 
             <label>Description</label>
-            <input 
-                type="text"
+            <textarea 
                 onChange={(e) => setDescription(e.target.value)}
                 value={description}
+                rows="4"
             />
+
+            <label>Status</label>
+                <select
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                    className={emptyFields.includes("status") ? "error" : ""}
+                >
+                    <option value="New">New</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
 
             <button>Add Task</button>
             {error && <div className="error">{error}</div>}

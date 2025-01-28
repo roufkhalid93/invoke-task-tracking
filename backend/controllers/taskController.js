@@ -27,7 +27,7 @@ const getTask = async (req, res) => {
 
 //POST a new task
 const createTask = async (req, res) => {
-    const {title, description} = req.body
+    const {title, description, status} = req.body
 
     let emptyFields = []
 
@@ -40,7 +40,7 @@ const createTask = async (req, res) => {
 
     //add doc to db
     try{
-        const task = await Task.create({title, description})
+        const task = await Task.create({title, description, status})
         res.status(200).json(task)
     } catch (error){
         res.status(400).json({error: error.message})
@@ -65,6 +65,26 @@ const deleteTask = async (req, res) => {
 }
 
 //UPDATE a task
+// const updateTask = async (req, res) => {
+//     const { id } = req.params
+
+//     if (!mongoose.Types.ObjectId.isValid(id)) {
+//         return res.status(404).json({error: 'No such task'})
+//     }
+
+//     const task = await Task.findByIdAndUpdate({_id: id}, {
+//         ...req.body
+//     })
+
+//     if (!task) {
+//         return res.status(404).json({error: 'No such task'})
+//     }
+
+//     res.status(200).json(task)
+
+// }
+
+//UPDATE a task
 const updateTask = async (req, res) => {
     const { id } = req.params
 
@@ -72,9 +92,11 @@ const updateTask = async (req, res) => {
         return res.status(404).json({error: 'No such task'})
     }
 
-    const task = await Task.findByIdAndUpdate({_id: id}, {
-        ...req.body
-    })
+    const task = await Task.findByIdAndUpdate(
+        {_id: id}, 
+        {...req.body},
+        {new: true}
+    )
 
     if (!task) {
         return res.status(404).json({error: 'No such task'})

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import TaskDetails from '../components/TaskDetails'
+import TaskForm from "../components/TaskForm"
 
 const Home = () => {
     const [tasks, setTasks] = useState(null)
@@ -25,6 +26,7 @@ const Home = () => {
                     <TaskDetails key={task._id} task={task} />
                 ))}
             </div>
+            <TaskForm />
         </div>
     )
 }
